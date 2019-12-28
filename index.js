@@ -7,6 +7,7 @@
 var http = require("http");
 var url  = require("url");
 var stringDecoder = require("string_decoder").StringDecoder;
+var config = require('./config');
 
 //start server and have it listen on port:3000
 var server = http.createServer(function (req, res) {
@@ -59,6 +60,8 @@ var server = http.createServer(function (req, res) {
 			//use payload sent by the handler or default to empty object
 			payload = typeof(payload) == 'object' ? JSON.stringify(payload) : {};
 
+			//return response
+			res.setHeader('Content-Type', 'application/json');
 			res.writeHead(statusCode);
 			res.end(payload);
 
@@ -69,8 +72,8 @@ var server = http.createServer(function (req, res) {
 	
 });
 
-server.listen(3000, function() {
-	console.log("Listening on port 3000...");
+server.listen(config.port, function() {
+	console.log("Listening on port "+config.port+" in "+config.envName+"...");
 });
 
 //define route handlers
