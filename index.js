@@ -8,8 +8,10 @@ var http = require("http");
 var https = require("https");
 var url  = require("url");
 var stringDecoder = require("string_decoder").StringDecoder;
-var config = require('./config');
+var config = require('./lib/config');
 var fs = require('fs');
+var handlers = require('./lib/handlers');
+var helpers = require('./lib/helpers');
 
 
 
@@ -57,7 +59,7 @@ var unifiedServer = function (req, res) {
 	var queryStringObject = parsedUrl.query;
 
 	//Get Http Method
-	var method = req.method.toUpperCase();
+	var method = req.method.toLowerCase();
 
 	//get headers as an Object
 	var headers = req.headers
@@ -83,7 +85,7 @@ var unifiedServer = function (req, res) {
 			'queryStringObject': queryStringObject,
 			'method': method,
 			'headers': headers,
-			'payload': buffer
+			'payload': helpers.parseJsonToObject(buffer)
 		}
 
 		//route the request to the handler specified in the router
@@ -99,25 +101,16 @@ var unifiedServer = function (req, res) {
 			res.writeHead(statusCode);
 			res.end(payload);
 
-			console.log('Returning ',statusCode, payload);
+			console.log(statusCode, payload);
 
 		})
 	});	
 };
 
-//define route handlers
-var handlers = {};
-
-handlers.ping = function (data, callback) {
-	callback(200, {});
-}
-
-handlers.notFound = function (data, callback) {
-	callback(404, {});
-}
 
 //define the router
 var router = {
-	'ping': handlers.ping	
+	'ping': handlers.ping,
+	'users': handlers.users
 }
 
