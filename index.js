@@ -38,7 +38,7 @@ var httpsServer = https.createServer(httpsServerOptions, function (res, req) {
 });
 
 
-// start the HTTPS server
+// Instantiate the HTTPS server
 httpsServer.listen(config.httpsPort, function() {
 	console.log("Listening on port "+config.httpsPort+" in "+config.envName+"...");
 });
@@ -94,7 +94,7 @@ var unifiedServer = function (req, res) {
 			statusCode = typeof(statusCode) == 'number' ? statusCode : 200;
 
 			//use payload sent by the handler or default to empty object
-			payload = typeof(payload) == 'object' ? JSON.stringify(payload) : {};
+			payload = payload && typeof(payload) == 'object' ? JSON.stringify(payload) : {};
 
 			//return response
 			res.setHeader('Content-Type', 'application/json');
