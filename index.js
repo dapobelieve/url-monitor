@@ -89,12 +89,12 @@ var unifiedServer = function (req, res) {
 		}
 
 		//route the request to the handler specified in the router
-		chosenHandler(data, function(statusCode, payload) {
+		chosenHandler(data, function(statusCode, payload = {}) {
 			// use status code sent by the handler or default to 200
 			statusCode = typeof(statusCode) == 'number' ? statusCode : 200;
 
 			//use payload sent by the handler or default to empty object
-			payload = payload && typeof(payload) == 'object' ? JSON.stringify(payload) : {};
+			payload = typeof(payload) == 'object' ? JSON.stringify(payload) : {};
 
 			//return response
 			res.setHeader('Content-Type', 'application/json');
@@ -111,6 +111,8 @@ var unifiedServer = function (req, res) {
 //define the router
 var router = {
 	'ping': handlers.ping,
-	'users': handlers.users
+	'users': handlers.users,
+	'tokens':  handlers.tokens,
+	'checks': handlers.checks
 }
 
