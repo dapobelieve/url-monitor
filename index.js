@@ -12,8 +12,11 @@ var config = require('./lib/config');
 var fs = require('fs');
 var handlers = require('./lib/handlers');
 var helpers = require('./lib/helpers');
+// 4158375309
 
-
+helpers.sendTwilioSms('07069494803', 'You are the best ever', function(res) {
+	console.log(res);
+});
 
 //start/instantiating the HTTP server and have it listen on port:3000
 var httpServer = http.createServer(function (req, res) {
