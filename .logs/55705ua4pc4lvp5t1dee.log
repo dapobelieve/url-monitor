@@ -1,2 +1,0 @@
-{"check":{"id":"55705ua4pc4lvp5t1dee","userPhone":"07069494802","protocol":"http","url":"babadudu.com","method":"get","successCodes":[200,201,301,302],"timeoutSeconds":5,"state":"down","lastChecked":1600617602880},"outcome":{"error":{"error":true,"value":{"errno":-3008,"code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"babadudu.com"}},"responseCode":false},"state":"down","alert":false,"time":1600617602880}
- 

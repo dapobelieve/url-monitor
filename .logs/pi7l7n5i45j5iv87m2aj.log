@@ -1,2 +1,0 @@
-{"check":{"id":"pi7l7n5i45j5iv87m2aj","userPhone":"07069494802","protocol":"http","url":"goal.org","method":"get","successCodes":[200,201,301,302],"timeoutSeconds":5,"state":"down","lastChecked":1600617602915},"outcome":{"error":{"error":true,"value":{"errno":-61,"code":"ECONNREFUSED","syscall":"connect","address":"35.208.22.208","port":80}},"responseCode":false},"state":"down","alert":false,"time":1600617602915}
- 
